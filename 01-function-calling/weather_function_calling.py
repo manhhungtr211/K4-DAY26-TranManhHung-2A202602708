@@ -5,16 +5,28 @@ chính file app này. Model chỉ QUYẾT ĐỊNH gọi tool nào; app mới là
 
 Cách chạy:
     pip install -r ../requirements.txt
-    export GEMINI_API_KEY=...
+    # Trên PowerShell (Windows):
+    $env:GEMINI_API_KEY="AIzaSy..."
+    # Hoặc trên Linux/macOS:
+    export GEMINI_API_KEY="AIzaSy..."
     python weather_function_calling.py
 """
+
+import sys
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+
+from dotenv import load_dotenv
+load_dotenv()
 
 from google import genai
 from google.genai import types
 
 client = genai.Client()
 
-MODEL = "gemini-2.5-flash"
+MODEL = "gemini-3.8-flash"
 
 SYSTEM_INSTRUCTION = (
     "Bạn là trợ lý thời tiết thân thiện, trả lời bằng tiếng Việt tự nhiên. "

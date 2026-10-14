@@ -2,6 +2,16 @@ from typing import Any
 import asyncio
 import httpx
 import os
+import sys
+
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+
+from dotenv import load_dotenv
+load_dotenv()
+
 from mcp.server.fastmcp import FastMCP
 
 # Initialize FastMCP server
